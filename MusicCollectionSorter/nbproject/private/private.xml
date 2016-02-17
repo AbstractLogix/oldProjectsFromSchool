@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/Users/omiranda/NetBeansProjects/MusicCollectionSorter/src/musiccollectionsorter/Album.java</file>
+            <file>file:/Users/omiranda/NetBeansProjects/MusicCollectionSorter/src/musiccollectionsorter/Track.java</file>
+            <file>file:/Users/omiranda/NetBeansProjects/MusicCollectionSorter/src/musiccollectionsorter/MusicCollectionSorter.java</file>
+            <file>file:/Users/omiranda/NetBeansProjects/MusicCollectionSorter/src/musiccollectionsorter/UserInput.java</file>
+        </group>
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
     </open-files>
 </project-private>

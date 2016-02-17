@@ -2,29 +2,44 @@ package musiccollectionsorter;
 
 import java.io.*;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.InputMismatchException;
+=======
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
 import java.util.Scanner;
 
 /**
  *
+<<<<<<< HEAD
  * @author Oscar Miranda
  * This program reads, writes to a text file. 
  * after reading the file it sorts it by certain parameters
  * then gives a user the ability to search based on those parameters
+=======
+ * @author omiranda
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
  */
 public class MusicCollectionSorter
 {
     ArrayList<Album> albums = new ArrayList<>();
+<<<<<<< HEAD
     ArrayList<Album> copy = new ArrayList<>();
     /**
      * @param args the command line arguments
      * main method prompts the user with choices on what action to perform
+=======
+    String catLine;
+    /**
+     * @param args the command line arguments
+     * 
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
      * 
      */
     public static void main(String[] args)
     {
+<<<<<<< HEAD
         MusicCollectionSorter demo = new MusicCollectionSorter();
         demo.getCatalog();
         //demo.printOutAlbums();
@@ -72,6 +87,17 @@ public class MusicCollectionSorter
     /**
      * this method prints out the album objects toString method is overwritten
      */
+=======
+        //new UserInput();
+        // TODO code application logic here
+        MusicCollectionSorter demo = new MusicCollectionSorter();
+        demo.getCatalog();
+        demo.printOutAlbums();
+        
+        
+    }
+    
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
     public void printOutAlbums()
     {
         for(Album albs : albums)
@@ -79,6 +105,7 @@ public class MusicCollectionSorter
             System.out.println(albs);
         }
     }
+<<<<<<< HEAD
     /**
      * This method opens the catalog file and uses a scanner object to 
      * read the file. then creates objects of type Album and adds them
@@ -111,16 +138,44 @@ public class MusicCollectionSorter
                 
                 albums.add(currentAlbum);
                 copy.add(currentAlbum);
+=======
+    
+    public void getCatalog()
+    {
+        File catalog = new File("/Users/omiranda/NetBeansProjects/MusicCollectionSorter/src/musiccollectionsorter/catalog2.txt");
+        try
+        {
+            Scanner myCatalog = new Scanner(catalog);
+            while(myCatalog.hasNext())
+            {
+                String artistName = myCatalog.next();
+                String albumName = myCatalog.next();
+                ArrayList<Track> tracks = new ArrayList();
+                
+                while(myCatalog.hasNext()){
+                    Track myTracks = new Track(myCatalog.next());
+                    tracks.add(myTracks);
+                    if(myCatalog.hasNextLine()){ break;}
+                }
+                Album myAlbum = new Album(artistName, albumName, tracks);
+                albums.add(myAlbum);
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
             }
         }
         catch(FileNotFoundException e)
         {
+<<<<<<< HEAD
             System.out.println("File not found");
             System.exit(99);
+=======
+            System.out.println("couldn't find file");
+            System.exit(0);
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
         }
         catch(IOException e)
         {
             System.out.println("an I/O error occured");
+<<<<<<< HEAD
             System.exit(98);
         }
     }
@@ -244,6 +299,9 @@ public class MusicCollectionSorter
         {
             System.out.println("an I/O error occured");
             System.exit(98);
+=======
+            System.exit(0);
+>>>>>>> 5f606b530c29e6742b08993925b632c6eff003aa
         }
     }
 }
