@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 21, 2009 3:23:33 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.DocumentTracking" schema="dbo" table="DocumentTracking">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="documentNo" type="string">
+      <column length="50" name="documentNo"/>
+    </property>
+    <property name="documentType" type="string">
+      <column length="10" name="documentType"/>
+    </property>
+    <property name="userId" type="java.lang.Integer">
+      <column name="userId"/>
+    </property>
+    <property name="trackingDate" type="timestamp">
+      <column length="23" name="trackingDate"/>
+    </property>
+    <property name="message" type="string">
+      <column length="500" name="message"/>
+    </property>
+    <property name="action" type="string">
+      <column length="20" name="action"/>
+    </property>
+    <property name="type" type="string">
+      <column length="20" name="type"/>
+    </property>
+    <property name="dua" type="string">
+      <column length="50" name="dua"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

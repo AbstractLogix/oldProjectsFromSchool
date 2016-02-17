@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="ExcelReportsWS">
+      <implementation-class>webservices.ExcelReportsWS</implementation-class>
+    </service>
+    <service name="UsersWS">
+      <implementation-class>webservices.UsersWS</implementation-class>
+    </service>
+    <service name="ReportsWS">
+      <implementation-class>webservices.ReportsWS</implementation-class>
+    </service>
+    <service name="TrackingWS">
+      <implementation-class>webservices.TrackingWS</implementation-class>
+    </service>
+    <service name="EmailSenderWS">
+      <implementation-class>webservices.EmailSenderWS</implementation-class>
+    </service>
+    <service name="WarehousesWS">
+      <implementation-class>webservices.WarehousesWS</implementation-class>
+    </service>
+    <service name="BMWS">
+      <implementation-class>webservices.BMWS</implementation-class>
+    </service>
+    <service name="DocumentsWS">
+      <implementation-class>webservices.DocumentsWS</implementation-class>
+    </service>
+    <service name="CustomersWS">
+      <implementation-class>webservices.CustomersWS</implementation-class>
+    </service>
+    <service name="ExcelRpts">
+      <implementation-class>webservices.ExcelRpts</implementation-class>
+    </service>
+    <service name="IInvoicesWS">
+      <implementation-class>webservices.IInvoicesWS</implementation-class>
+    </service>
+    <service name="UtilityWS">
+      <implementation-class>webservices.UtilityWS</implementation-class>
+    </service>
+  </services>
+  <clients>
+  </clients>
+  <jsr109>true</jsr109>
+</jax-ws>

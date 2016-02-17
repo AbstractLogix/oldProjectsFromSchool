@@ -1,0 +1,61 @@
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- CSS ===================== -->
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> 
+    <style>
+        body    { padding-top:30px; }
+    </style>
+    
+    <!-- JS ===================== -->
+    <!-- load angular -->
+    <script src="js/angular/angular.min.js"></script> 
+    <script src="app.js"></script>
+    
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="js/angular/angular.soap.js"></script>
+    <script src="js/angular/angular-md5.js"></script>
+    <script src="js/angular/soapclient.js"></script>
+    <script src="app.js"></script>
+    
+</head>
+
+<!-- apply angular app and controller to our body -->
+<body ng-app="myApp" ng-controller="mainController">
+<div class="container">
+<div class="col-sm-8 col-sm-offset-2">
+    
+    <!-- PAGE HEADER -->
+    <div class="page-header"><h1>Bienvenido</h1></div>
+   
+    <!-- FORM -->
+    <!-- pass in the variable if our form is valid or invalid -->
+    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+        <!-- USERNAME -->
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" ng-model="username" required>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+            <label>Password</label>
+            <input type="text" name="password" class="form-control" ng-model=password required>
+        </div>
+            
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </form>
+        Username:{{username}}</br>
+        HDM5:{{passhash}}</br>
+        ResultadoWeb:{{resp}}</br>
+</div><!-- col-sm-8 -->
+</div><!-- /container -->
+</body>
+</html>

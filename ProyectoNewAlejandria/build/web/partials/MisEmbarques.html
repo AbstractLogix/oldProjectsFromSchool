@@ -1,0 +1,88 @@
+
+{{message}}
+<div class="container-fluid">
+    <div class="row" ng-controller="TableEmbarque">
+		<div class="col-md-7">
+			<div class="row">
+				<div class="col-md-6">
+					<select class="form-control">
+                                            <option>Todos</option>
+                                            <option>Aerea</option>
+                                            <option>Courier</option>
+                                            <option>Box</option>
+                                            <option>LCL</option>
+                                            <option>FCL</option>
+                                        </select>
+				</div>
+				<div class="col-md-6">
+					 
+					<button type="button" class="btn btn-default">
+						Default
+					</button>
+				</div>
+			</div>
+                        <br>
+			<div class="row">
+				<div class="col-md-12">
+                                    <small>
+                                    <div>
+                                        <font size="2" align="center">
+                                        <div id="grid1" ui-grid="gridOptions" class="grid"  ng-click=selectRow() ui-grid-selection></div>
+                                        </font>
+                                    </div>
+                                    </small>
+				</div>
+			</div>
+			<div class="row">
+                            <br>
+				<div class="col-md-6">
+                                    Piesas: {{Piezas}}
+                                    <br><br>
+                                    Peso Vol: {{PesoV}} {{Medida}}
+				</div>
+				<div class="col-md-6">
+                                    Peso: {{Peso}}  {{Medida}}
+                                    <br><br>
+                                    Cft: {{Ctf}}
+                                    {{gridOptions.selectedItems}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                              Warehouses del documento
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <small>
+                                <div>
+                                    <font size="2" align="center">
+                                    <div id="grid1" ui-grid="gridOptions2" class="gridStyleD"></div>
+                                    </font>
+                                </div>
+                           </small>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <font size="1.8">
+                                    <div ng-repeat = "VF in TF track by $index">
+                                            {{VF}}
+                                    </div>
+                            </font>
+                        </div>
+                        <div class="col-md-6">
+                            <font size="1.8">
+                                    <div ng-repeat = "VM in TM track by $index">
+                                            {{VM}}
+                                    </div>
+                           </font>
+                        </div>
+                    </div>
+                    
+		</div>
+	</div>
+</div>

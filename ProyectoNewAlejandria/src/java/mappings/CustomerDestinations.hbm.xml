@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 16, 2009 12:31:05 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.CustomerDestinations" schema="dbo" table="CustomerDestinations">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="customerId" type="int">
+      <column name="customerId" not-null="true"/>
+    </property>
+    <property name="cityId" type="int">
+      <column name="cityId" not-null="true"/>
+    </property>
+    <property name="tel" type="string">
+      <column length="20" name="tel"/>
+    </property>
+    <property name="cel" type="string">
+      <column length="20" name="cel"/>
+    </property>
+    <property name="fax" type="string">
+      <column length="20" name="fax"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email"/>
+    </property>
+    <property name="address" type="string">
+      <column length="150" name="address" not-null="true"/>
+    </property>
+    <property name="zip" type="string">
+      <column length="10" name="zip"/>
+    </property>
+    <property name="billingName" type="string">
+      <column length="200" name="billingName" not-null="true"/>
+    </property>
+    <property name="billingAddress" type="string">
+      <column length="200" name="billingAddress" not-null="true"/>
+    </property>
+    <property name="billingNo" type="string">
+      <column length="20" name="billingNo" not-null="true"/>
+    </property>
+    <property name="salesPersonId" type="int">
+      <column name="salesPersonId" not-null="true"/>
+    </property>
+    <property name="customerAgentId" type="java.lang.Integer">
+      <column name="customerAgentId"/>
+    </property>
+    <property name="notifyByMail" type="java.lang.Boolean">
+      <column name="notifyByMail"/>
+    </property>
+  </class>
+</hibernate-mapping>

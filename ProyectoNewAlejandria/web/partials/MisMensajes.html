@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+                    Del&nbsp;<input type="date" ng-model="F1" style="width:80%; font-size:150%">
+		</div>
+                <div class="col-md-4">
+                    Al&nbsp;<input type="date" ng-model="F2" style="width:80%;  font-size:150%">
+		</div>
+                <div class="col-md-2">
+                   <button type="submit" ng-click="Buscar()" style="width:100%;">Buscar</button>
+		</div>
+                <div class="col-md-2">
+                   <button type="submit" ng-click="Limpiar()" style="width:100%;">Limpiar</button>
+		</div>
+	</div>
+        <br>
+	<div class="row">
+		<div class="col-md-12"> 
+                   <div class="tm">
+                    <table >
+                        <tr style=" padding: 2px">
+                            <th style=" padding: 2px">Fecha</th>
+                            <th style=" padding:2px">Acción</th>
+                            <th style=" padding: 2px">Mensaje</th>
+                        </tr>
+                        <tr ng-repeat="I in LI" style=" padding: 2px">
+                            <td style=" padding: 2px">{{I.Fecha}}</td>
+                            <td style=" padding: 2px">{{I.Accion}}</td>
+                            <td style=" padding: 2px">{{I.Men}}</td>
+                        </tr>
+                    </table>
+                   </div>
+		</div>
+	</div>
+</div>
+

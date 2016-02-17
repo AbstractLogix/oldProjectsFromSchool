@@ -1,0 +1,145 @@
+<div class="modal-body">
+        <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+                    <small><label for="surname">No Warehouse </label> {{WrhsId}}</small> 
+		</div>
+		<div class="col-md-6">
+                    <small><label for="surname">Fecha </label> {{Fecha}}</small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-6">
+                    <small><label for="surname">No.Pro </label> {{NoPro}}</small> 
+		</div>
+		<div class="col-md-6">
+                    <small><label for="surname">Rastreo </label> {{Rastreo}}</small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                    <small><label for="surname">Proveedor </label> {{Proveedor}} </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                    <small><label for="surname">Cliente </label> {{Cliente}} </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-6">
+                    <small><label for="surname">Transportista </label> {{Transportista}} </small>
+		</div>
+		<div class="col-md-6">
+                    <small><label for="surname">Ruta </label> {{Ruta}}</small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                    <small><label for="surname">Estado </label> {{Estado}}</small> 
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                    <small><label for="surname">Descripción </label> {{Descripcion}} </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                   <small> <label for="surname">Valor Merc. </label>  {{Moneda}} {{ValorMerc}} </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-6">
+                    <small><label for="surname">Factura Original. </label> <input type="checkbox" value="" checked={{FO}}></small>
+		</div>
+                <div class="col-md-6">
+                    <small><label for="surname">Lista de Empaque. </label> <input type="checkbox" value="" checked={{LE}}></small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-6">
+                    <small><label for="surname">Peso Vol. Total </label> {{VolTotal}} </small>
+		</div>
+                <div class="col-md-6">
+                   <small> <label for="surname">CFT Total </label> {{CFT}} </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-12">
+                    <small>
+                        <div>
+                        <div id="grid1" ui-grid="gridOptions" class="gridStyle"></div>
+                        </div>
+                    </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-6">
+                    <small>
+                        <label for="surname">Total Piezas:</label>{{TPiezas}}
+                    </small>
+		</div>
+                <div class="col-md-2">
+                    <small>
+                    </small>
+		</div>
+                <div class="col-md-4">
+                    <small>
+                        <label for="surname">Total Peso:</label>{{TPeso}}
+                    </small>
+		</div>
+	</div>
+        <br>
+        <div class="row">
+		<div class="col-md-6">
+                    <small>
+                         <label for="surname">Merc Peligrosa</label> <input type="checkbox" value="" checked="0">
+                    </small>
+		</div>
+                <div class="col-md-6">
+                    <small>
+                         <label for="surname">Sobrepeso</label> <input type="checkbox" value="" checked="1">
+                    </small>
+		</div>
+	</div>
+        <div class="row">
+		<div class="col-md-3">
+                    <small>
+                         <label for="surname">Marcas</label>
+                    </small>
+		</div>
+                <div class="col-md-9">
+                    <small>
+                         <textarea rows="4" cols="25">
+{{TextoMarcas}}
+                         </textarea>
+                    </small>
+		</div>
+	</div>  
+        <div class="row">
+		<div class="col-md-6">
+                    <small>
+                         <label for="surname">No. Orden </label>{{NoOrden}}
+                    </small>
+		</div>
+                <div class="col-md-6">
+                    <small>
+                        <label for="surname">No. Ref </label>{{NoRef}}
+                    </small>
+		</div>
+	</div> 
+        <div class="row">
+		<div class="col-md-6">
+                    <small>
+                         <button type="submit" class="btn btn-primary">Recepción </button>
+                    </small>
+		</div>
+                <div class="col-md-6">
+                    <small>
+                        <button type="submit" class="btn btn-primary">Docs. Digitales</button>
+                    </small>
+		</div>
+	</div>  
+        </div>
+</div>

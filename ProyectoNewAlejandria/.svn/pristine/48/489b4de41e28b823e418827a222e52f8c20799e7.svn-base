@@ -1,0 +1,85 @@
+<div class="container-fluid">
+<div class="row" ng-controller="TableHistorial">
+		<div class="col-md-7">
+                                
+                                <div class="col-md-2">
+                                        Ruta
+				</div>
+				<div class="col-md-5">
+                                    <select  class="form-control" ng-change="Filtro()" ng-init="searchText = com1[0]" ng-model="searchText" ng-options="com1.value for com1 in com1"></select>
+				</div>
+				<div class="col-md-5">
+					 
+					<button class="ghostb" ng-click="Exportar()">Exportar</button>
+				</div>
+                                <br>
+                                <div class="col-md-2">
+                                    Proveedor
+				</div>
+				<div class="col-md-5">
+                                        <select class="form-control" ng-disabled="CM1" ng-change="Filtro()"
+                                                ng-model="Filtro2" ng-options="NombresShip.Nombre for NombresShip in NombresShip">
+                                                    
+                                        </select>
+				</div>
+				<div class="col-md-5">
+                                    <input type="checkbox" ng-model="CM1" ng-change="Todos()">Todos
+				</div>
+                        <br>
+                        <br>
+				<div class="col-md-12">
+                                    <small>
+                                    <div>
+                                        <font size="2" align="center">
+                                        <div id="grid1" ui-grid="gridOptions" class="grid"  ng-click=selectRow() ui-grid-selection></div>
+                                        </font>
+                                    </div>
+                                    </small>
+				</div>
+                            <br>
+				<div class="col-md-6">
+                                    Piesas: {{Piezas}}
+                                    <br>
+                                    Peso Vol: {{PesoV}} {{Medida}}
+				</div>
+				<div class="col-md-6">
+                                    Peso: {{Peso}}  {{Medida}}
+                                    <br>
+                                    Cft: {{Ctf}}
+                                    {{gridOptions.selectedItems}}
+				</div>
+		</div>
+		<div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                              Warehouses del documento
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <small>
+                                <div>
+                                    <font size="2" align="center">
+                                    <div id="grid1" ui-grid="gridOptions2" class="gridStyleD" ui-grid-selection></div>
+                                    </font>
+                                </div>
+                           </small>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <font size="1.9">
+                              <table style="width:100%;">
+                                  <tr>
+                                    <td><div ng-repeat = "VF in TF track by $index">{{VF}}</div></td>
+                                    <td><div ng-repeat = "VM in TM track by $index">{{VM}}</div></td>
+                                 </tr >
+                              </table>                                    
+                           </font>
+                        </div>
+                    </div>
+                    
+		</div>
+</div>
+    </div>

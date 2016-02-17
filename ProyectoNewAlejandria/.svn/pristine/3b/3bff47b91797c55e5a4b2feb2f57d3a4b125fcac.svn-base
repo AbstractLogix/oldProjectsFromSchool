@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 7, 2009 8:31:26 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="Alejandria" name="beans.WebUserProfile" schema="dbo" table="WebUserProfile">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="customerId" type="java.lang.Integer">
+      <column name="customerId"/>
+    </property>
+    <property name="language" type="string">
+      <column length="2" name="language"/>
+    </property>
+    <property name="defaultView" type="string">
+      <column length="20" name="defaultView"/>
+    </property>
+  </class>
+</hibernate-mapping>

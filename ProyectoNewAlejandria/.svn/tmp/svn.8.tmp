@@ -1,0 +1,186 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* global mainApp, CryptoJS,idWrhs */
+
+mainApp.controller('MiCargaController', function ($scope) {
+
+});
+
+
+mainApp.controller('TableCarga', function ($scope, ngDialog, $sessionStorage) {
+
+    $scope.Piezas = 0;
+    $scope.ValorMerc = 0;
+    $scope.Ctf = 0;
+    $scope.Peso = 0;
+    $scope.PesoV = 0;
+
+    $scope.Open = function (id) {
+        idWrhs = id;
+        ngDialog.open({
+            templateUrl: 'partials/PopUpWrhs.html',
+            controller: "PopUp"
+        });
+
+    };
+
+    var myData = [
+        {
+
+        }];
+
+
+    $scope.gridOptions = {
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
+
+        //Definimos Headears
+        columnDefs: [
+            {
+                field: 'WrhId',
+                minWidth: 70,
+                width: 70,
+                displayName: 'Wrh Id',
+                cellTemplate: '<button type="button" style="width:100%;height:100%" ng-click=grid.appScope.Open(row.entity.WrhId) class="btn btn-default">' +
+                    '{{row.entity.WrhId}}' +
+                    '</button>'
+                },
+            {
+                field: 'Step',
+                minWidth: 70,
+                width: 50
+            },
+            {
+                field: 'Orig',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Dest',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Routing',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Valor Merc',
+                minWidth: 70,
+                width: 80
+            },
+            {
+                field: 'Pzs',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Peso',
+                minWidth: 70,
+                width: 50
+            },
+            {
+                field: 'Volumetrico',
+                minWidth: 70,
+                width: 90
+            },
+            {
+                field: 'Proveedor',
+                minWidth: 70,
+                width: 100
+            },
+            {
+                field: 'Orden',
+                minWidth: 70,
+                width: 120,
+                displayName: 'No.Orden'
+                }
+            ],
+
+        //DEfinimos data
+        data: myData
+    };
+    $scope.gridOptions.multiSelect = false;
+
+    //Pasamos los datos por el WebServicie
+    $scope.gridOptions.data.splice(0, 1);
+    for (i = 0; i < $sessionStorage.Lwrhs.length; i++) {
+        //Sumamos los Valores de la Tabla
+        $scope.Piezas = $scope.Piezas + parseInt($sessionStorage.Lwrhs[i].pieces);
+        $scope.ValorMerc = $scope.ValorMerc + parseInt($sessionStorage.Lwrhs[i].mercValue);
+        $scope.Ctf = $scope.Ctf + parseInt($sessionStorage.Lwrhs[i].cft);
+        $scope.Peso = $scope.Peso + parseInt($sessionStorage.Lwrhs[i].weight);
+        $scope.PesoV = $scope.PesoV + parseInt($sessionStorage.Lwrhs[i].volWeight);
+
+        //LLenamos la Tabla con sus Valores
+        $scope.gridOptions.data.push({
+            'WrhId': $sessionStorage.Lwrhs[i].id,
+            'Step': $sessionStorage.Lwrhs[i].stepId,
+            'Orig': $sessionStorage.Lwrhs[i].origenCity,
+            'Dest': $sessionStorage.Lwrhs[i].destinationId,
+            'Routing': $sessionStorage.Lwrhs[i].routingId,
+            'Valor Merc': $sessionStorage.Lwrhs[i].mercValue,
+            'Pzs': $sessionStorage.Lwrhs[i].pieces,
+            'Peso': $sessionStorage.Lwrhs[i].weight,
+            'Volumetrico': $sessionStorage.Lwrhs[i].volWeight,
+            'Orden': $sessionStorage.Lwrhs[i].orderNo,
+            'Proveedor': $sessionStorage.Lwrhs[i].shipper.name
+        });
+    }
+
+
+});
+
+mainApp.controller('TableCargaCotizar', function ($scope) {
+
+
+    var myData = [
+        {
+
+        }];
+
+    $scope.gridOptions = {
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
+
+        //Definimos Headears
+        columnDefs: [
+            {
+                field: 'Wrh Id',
+                minWidth: 70,
+                width: 70
+            }, ,
+            {
+                field: 'Orig',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Dest',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Pzs',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Peso',
+                minWidth: 70,
+                width: 63
+            }
+            ],
+
+        //DEfinimos data
+        data: myData
+    };
+    $scope.gridOptions.multiSelect = false;
+
+
+});

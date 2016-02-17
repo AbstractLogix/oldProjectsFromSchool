@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 21, 2009 2:25:46 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class  name="beans.LocationRacks" schema="dbo" table="LocationRacks">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="name" type="string">
+      <column length="25" name="name" not-null="true"/>
+    </property>
+    <property name="positionNo" type="java.lang.Integer">
+      <column name="positionNo"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

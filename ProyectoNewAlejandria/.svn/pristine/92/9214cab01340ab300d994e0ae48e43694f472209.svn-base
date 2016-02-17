@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 16, 2009 12:31:05 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.Customers" schema="dbo" table="Customers">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="name" type="string">
+      <column length="200" name="name" not-null="true"/>
+    </property>
+    <property name="lastname" type="string">
+      <column length="200" name="lastname" not-null="true"/>
+    </property>
+    <property name="active" type="boolean">
+      <column name="active" not-null="true"/>
+    </property>
+    <property name="debt" type="boolean">
+      <column name="debt" not-null="true"/>
+    </property>
+    <property name="creditDays" type="int">
+      <column name="creditDays" not-null="true"/>
+    </property>
+    <property name="creditLimit" type="big_decimal">
+      <column name="creditLimit" not-null="true" precision="18"/>
+    </property>
+    <property name="initDate" type="timestamp">
+      <column length="23" name="initDate" not-null="true"/>
+    </property>
+    <property name="incomplete" type="java.lang.Boolean">
+      <column name="incomplete"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+    <property name="code" type="string">
+      <column length="50" name="code"/>
+    </property>
+    <property name="retentionAgent" type="java.lang.Boolean">
+      <column name="retentionAgent"/>
+    </property>
+    <property name="taxRetained" type="big_decimal">
+      <column name="taxRetained" precision="18"/>
+    </property>
+    <property name="retentionAgentSince" type="timestamp">
+      <column length="23" name="retentionAgentSince"/>
+    </property>
+    <property name="tag" type="string">
+      <column length="100" name="tag"/>
+    </property>
+    <property name="baseLocation" type="java.lang.Integer">
+      <column name="baseLocation"/>
+    </property>
+    <property name="correlative" type="java.lang.Integer">
+      <column name="correlative"/>
+    </property>
+    <property name="country" type="string">
+      <column length="3" name="country"/>
+    </property>
+    <property name="holdCustomsClearance" type="java.lang.Boolean">
+      <column name="holdCustomsClearance"/>
+    </property>
+  </class>
+</hibernate-mapping>

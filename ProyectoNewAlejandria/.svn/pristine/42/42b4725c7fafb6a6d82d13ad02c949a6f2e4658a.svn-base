@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+    <!--<property name="hibernate.connection.url">jdbc:jtds:sqlserver://localhost:1240/IcarusMerge</property>-->
+    <property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.157.90:1433/Icarus</property>
+    <!--property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.157.202:1433/Icarus</property-->
+    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.password">rxchPiensan?08-30</property>
+    
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="hibernate.show_sql">false</property>
+    <property name="hibernate.format_sql">false</property>
+    <property name="hibernate.connection.autocommit">false</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.connection.pool_size">20</property>
+    <!--<property name="hibernate.show_sql">true</property>-->
+    <mapping resource="mappings/DocumentWarehouses.hbm.xml"/>
+    <mapping resource="mappings/WebUsers.hbm.xml"/>
+    <mapping resource="mappings/Tracking.hbm.xml"/>
+    <mapping resource="mappings/Warehouses.hbm.xml"/>
+    <mapping resource="mappings/DocumentTracking.hbm.xml"/>
+    <mapping resource="mappings/WarehouseTracking.hbm.xml"/>
+    <mapping resource="mappings/Messages.hbm.xml"/>
+    <mapping resource="mappings/Shippers.hbm.xml"/>
+    <mapping resource="mappings/Cities.hbm.xml"/>
+    <mapping resource="mappings/Locations.hbm.xml"/>
+    <mapping resource="mappings/WarehouseDetails.hbm.xml"/>
+    <mapping resource="mappings/Customers.hbm.xml"/>
+    <mapping resource="mappings/CustomerServices.hbm.xml"/>
+    <mapping resource="mappings/CustomerDestinations.hbm.xml"/>
+    <mapping resource="mappings/LocationServices.hbm.xml"/>
+    <mapping resource="mappings/CustomerChargesByCft.hbm.xml"/>
+    <mapping resource="mappings/CustomerChargesByLbs.hbm.xml"/>
+    <mapping resource="mappings/LocationRacks.hbm.xml"/>
+    <mapping resource="mappings/Carriers.hbm.xml"/>
+    <mapping resource="mappings/Status.hbm.xml"/>
+    <mapping resource="mappings/Documents.hbm.xml"/>
+    <mapping resource="mappings/Currencies.hbm.xml"/>
+    <mapping resource="mappings/IinvoiceDetails.hbm.xml"/>
+    <mapping resource="mappings/Iinvoices.hbm.xml"/>
+    <mapping resource="mappings/IdocumentInvoices.hbm.xml"/>
+    <mapping resource="mappings/CustomerContacts.hbm.xml"/>
+    <mapping resource="mappings/WebUserMessages.hbm.xml"/>
+    <mapping resource="mappings/WebUserProfile.hbm.xml"/>
+    <mapping resource="mappings/WebUserPermissions.hbm.xml"/>
+    <mapping resource="mappings/Users.hbm.xml"/>
+    <mapping resource="mappings/MjFiles.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

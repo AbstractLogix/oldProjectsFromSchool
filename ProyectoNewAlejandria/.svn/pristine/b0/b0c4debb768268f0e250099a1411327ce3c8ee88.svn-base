@@ -1,0 +1,88 @@
+<div class="modal-body">
+<div class="row">
+        <div class="col-md-6" >
+            <div align="center">
+                <div class="col-md-12">
+                    <label for="surname">{{NoDocu}} {{Tipo}}</label><br>
+                    <label for="surname">INFORMACION DEL DOCUMENTO</label><br>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table>
+                     <tr>
+                        <td><label>Fecha </label></td>
+                        <td>{{Fecha}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Origen </label></td>
+                        <td>{{Origen}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Destination </label>
+                        <td>{{Destination}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                         <td><label>Cliente </label></td>
+                         <td>{{Cliente}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                         <td><label>Descripción </label></td>
+                         <td>{{Des}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Ruta </label></td>
+                        <td>{{Ruta}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Piezas </label></td>
+                        <td>{{Piezas}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Peso </label></td>
+                        <td>{{Peso}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>PesoV </label></td>
+                        <td>{{PesoV}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Cft </label></td>
+                        <td>{{CFT}}</td>
+                     </tr>
+                     <br>
+                     <tr>
+                        <td><label>Merc. Peligroso </label></td>
+                        <td>{{MP}}</td>
+                     </tr>            
+                </table>
+            </div>   
+        </div>
+        <div class="col-md-6" >
+            <div class="col-md-12">
+                <div id="grid1" ui-grid="gridOptions" class="gridStylePopD "  ng-click=selectRow() ui-grid-selection></div>          <br>      <br>
+            </div>
+            <div class="col-md-12">
+                <div id="grid2" ui-grid="gridOptions2" class="gridStylePopD " ui-grid-selection></div>        <br>
+            </div>
+            <div class="col-md-6">
+                <button type="submit">Digital</button>
+            </div>
+            <div class="col-md-6">
+            <div align="rigth">
+                <label for="surname">Total:</label>{{Total}}
+            </div>
+            </div>
+        </div>
+</div>
+</div>
+

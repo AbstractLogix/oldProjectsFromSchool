@@ -1,0 +1,95 @@
+<div class="container-fluid">
+<font size = "2">
+	<div class="row" ng-controller="TableCarga">
+		<div class="col-md-7">
+                                <!-- ListBox -->
+				<div class="col-md-5">
+					<select class="form-control" ng-model="searchText" ng-change=Filtro()>
+                                            <option selected>Todos</option>
+                                            <option>On Hand</option>
+                                            <option>Routing</option>
+                                            <option>LCL</option>
+                                            <option>FCL</option>
+                                            <option>Consolidado</option>
+                                            <option>Carga Maritima</option>
+                                        </select>
+				</div>
+                                    <!-- Boton Recepcion -->
+                                    <div class="col-md-7">
+                                        <button class="ghostb">Recepcíon</button>
+                                        <button class="ghostb" ng-click="WrhsDocu()">Digital</button>
+                                        <button class="ghostb" ng-click="Exportar()">Exportar</button>
+                                    </div>
+                                    <br>
+                                    <br>
+                            <!-- Tabla Informacion -->
+				<div class="col-md-12">
+                                        <font size="2" align="center">
+                                        <div id="grid1" ui-grid="gridOptions" class="grid" Style="height: 350px;"  ng-click=selectRow() ui-grid-selection></div>
+                                        </font>
+				</div>
+                        </br>
+				<div class="col-md-6">
+                                    <B>Piezas: {{Piezas}}</B>
+                                    </br>
+                                    Valor Merc: {{ValorMerc}}
+                                    </br>
+                                    ctf:{{Ctf}}
+				</div>
+				<div class="col-md-6">
+                                    Peso: {{Peso}}
+                                    </br>
+                                    Peso Vol: {{PesoV}}
+                                </div>
+		</div>
+		<div class="col-md-5">
+				<div class="col-md-12">
+                                    Cotizar
+                                    </br>
+                                    <div >
+                                        <font size = "2"  align="center">
+                                            <div id="grid1" ui-grid="TablaC" class="grid" Style="height: 220px;"></div>
+                                        </font>
+                                    </div>
+				</div>
+				<div class="col-md-6">
+                                    Piezas: {{PZ}}
+                                    <br>
+                                    Ctf: {{Ctf2}}
+				</div>
+				<div class="col-md-6">
+                                    Peso: {{PS}} Lbs
+                                    <br>
+                                    Peso Vol: {{PV}} Lbs
+				</div>
+                        <div ng-show="COCV > 0">
+				<div class="col-md-12">
+                                    <b><input type="radio" ng-model="value" value="COC"><label for="surname">Courier</label></b>
+                                    &nbsp;<label for="surname">{{cocAmmountL}}</label>
+                                    &nbsp;<label for="surname">{{cocETAL}}</label>
+				</div>
+                        </div>
+                        <div ng-show="AIRV > 0">
+                                <div class="col-md-12">
+                                    <b><input type="radio" ng-model="value" value="AIR"><label for="surname">Regular Air</label></b>
+                                    &nbsp;<label for="surname">{{airAmmountL}}</label>
+                                    &nbsp;<label for="surname">{{airETAL}}</label>
+				</div>
+                       </div>
+                       <div ng-show="LCLV > 0">
+                                <div class="col-md-12">
+                                    <b><input type="radio" ng-model="value" value="LCL"><label for="surname">LCL</label></b>
+                                    &nbsp;<label for="surname">{{lclAmmountL}}</label>
+                                    &nbsp;<label for="surname">{{lclETAL}}</label>
+				</div>
+                       </div>
+                       <div ng-show="FCLV > 0">
+                                <div class="col-md-12">
+                                    <b><input type="radio" ng-model="value" value="FCL"><label for="surname">FCL</label></b>
+                                    &nbsp;<label for="surname">Recomendamos traer un contenedor completo</label>
+				</div>
+                       </div>
+                </div>
+        </div>
+    </font>
+ </div>

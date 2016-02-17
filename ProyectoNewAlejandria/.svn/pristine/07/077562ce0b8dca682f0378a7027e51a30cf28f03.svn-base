@@ -1,0 +1,171 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* global mainApp, CryptoJS ,idWrhs ,idDocu*/
+
+mainApp.controller('MiEmbarqueController', function($scope) {
+
+});
+         
+mainApp.controller('TableEmbarque', function($scope,  ngDialog ,WebServicie ,$sessionStorage ,uiGridConstants) {
+        
+        $scope.Piezas = 0;
+        $scope.Ctf = 0;
+        $scope.Peso = 0;
+        $scope.PesoV = 0;
+        $scope.Medida = "lbs";
+        $scope.SItem = [{}];  //Valor Donde se Alamcena la Fila Seleccionada
+         
+        var myData =[{ }];
+        var myData2;
+        
+        $scope.Open = function (id) {            
+            idWrhs = id;
+            ngDialog.open({
+                templateUrl: 'partials/PopUpWrhs.html',
+                controller: "PopUp"
+            });
+        
+        };
+        
+        $scope.OpenD = function (id) {   
+            idDocu = id;
+            ngDialog.open({
+                templateUrl: 'partials/PopUpDocument.html',
+                controller: "PopUpD",
+                className: 'ngdialog-theme-plain'
+                
+            });
+        };
+        
+        
+        //Informacion de Tabla 1
+        $scope.gridOptions = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,        
+            selectedItems: $scope.mySelections,
+            
+            //Definimos Headears
+            columnDefs : [
+                {name:'Documento', minWidth: 70, width: 110,
+                cellTemplate:'<button type="button" style="width:100%;height:100%" ng-click= grid.appScope.OpenD(row.entity.Documento) class="btn btn-default">'+
+                                '{{row.entity.Documento}}'+
+                                '</button>'},
+                {name:'Ruta',  minWidth: 70, width: 70},
+                {name:'Orig',  minWidth: 70, width: 50}, 
+                {name: 'Dest',  minWidth: 70, width: 60},
+                {name: 'Pzs',  minWidth: 70, width: 44},
+                {name: 'Peso',  minWidth: 70, width: 80},
+                {name: 'Eta',  minWidth: 70, width: 65},
+                {name: 'Tipo' , visible: false}
+            ],
+            
+            //DEfinimos data
+            data: myData
+        }; 
+        $scope.gridOptions.multiSelect = false;
+        
+        
+        //Informacion de Tabla 2
+        $scope.gridOptions2 = {
+            enableRowSelection: true,
+            
+            //Definimos Headears
+            columnDefs : [
+                {name:'WrhId', displayName: 'Wrhs ID' , minWidth: 70, width: 80,
+                cellTemplate:'<button type="button" style="width:100%;height:100%" ng-click= grid.appScope.Open(row.entity.WrhId)>'+
+                                '{{row.entity.WrhId}}'+
+                                '</button>'},
+                {name:'OCompra',displayName: 'Orden de Compra' , minWidth: 70, width: 193},
+                {name:'Accion', displayName: '-----' , minWidth: 70, width: 60} 
+            ],
+            
+            //DEfinimos data
+            data: myData2
+        };  
+        $scope.gridOptions2.multiSelect = false;
+        
+        //Pasamos los datos por el WebServicie
+        $scope.gridOptions.data.splice(0,1); 
+        for(i = 0 ; i<$sessionStorage.Ldocumentos.length ; i++)
+        {
+             //Sumamos los Valores de la Tabla
+             $scope.Piezas = $scope.Piezas + parseInt($sessionStorage.Ldocumentos[i].totalPieces);
+             $scope.Ctf = $scope.Ctf + parseInt($sessionStorage.Ldocumentos[i].totalCft);
+             $scope.Peso = $scope.Peso + parseInt($sessionStorage.Ldocumentos[i].totalWeight);
+             $scope.PesoV = $scope.PesoV + parseInt($sessionStorage.Ldocumentos[i].totalVolWeight);
+             $scope.Medida = $sessionStorage.Ldocumentos[i].measure;
+             
+             //LLenamos la Tabla con sus Valores
+             $scope.gridOptions.data.push({
+                'Documento':$sessionStorage.Ldocumentos[i].documentNo,
+                'Ruta': $sessionStorage.Ldocumentos[i].routingId,
+                'Orig':$sessionStorage.Ldocumentos[i].origenCityCode,
+                'Dest':$sessionStorage.Ldocumentos[i].destinationCityCode,
+                'Pzs':$sessionStorage.Ldocumentos[i].totalPieces,
+                'Peso':$sessionStorage.Ldocumentos[i].totalWeight,
+                'Eta': "---",
+                'Tipo': $sessionStorage.Ldocumentos[i].documentType
+              });          
+            }
+        
+        //Parte Encargada de Sincronisar fila seleccionada para recuperar el valor
+        $scope.gridOptions.onRegisterApi = function( gridApi ) {
+        $scope.gridApi = gridApi;
+        
+        $scope.toggleRowSelection = function() {
+            $scope.gridApi.selection.clearSelectedRows();
+            $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
+            $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.OPTIONS);
+        };
+        
+        
+        //Metodo Cuando se Selecciona una Fila
+        $scope.selectRow = function(){
+            var p = $scope.gridApi.selection.getSelectedRows();
+            
+            var username = "TECNOBODEGA4";
+            var password = "123456";
+            var passhash = CryptoJS.MD5(username+password);
+            
+            
+            //Aki llenamos la Tabla Warehouse del Documento primero Encontramos el Documento
+            $scope.gridOptions2.data = [];
+            WebServicie.GetDocumentWrhs(p[0].Documento, p[0].Tipo, username,passhash+'').then(function(Lista){
+                    var LISTAJ = JSON.parse(Lista);
+                    //Aki LLenamos el Traking
+                    for(var i = 0; i<LISTAJ.length ; i++)
+                    {
+                         $scope.gridOptions2.data.push({
+                             'WrhId': LISTAJ[i].id,
+                             'OCompra': LISTAJ[i].orderNo,
+                             'Accion': ""
+                             
+                         });
+                    }
+            });   
+                
+        
+            var TrakingF = [];
+            TrakingF.push("Fecha");
+            var TrakingM = [];
+            TrakingM.push("Mensaje");
+            WebServicie.GetTrakingD(p[0].Documento , username , passhash+'').then(function(DT){
+                var DTJ = JSON.parse(DT);  
+                for(var i = 0; i < DTJ.length ; i++)
+                {
+                    TrakingF.push(DTJ[i].trackDate);
+                    TrakingM.push(DTJ[i].message);
+                }
+            });
+            $scope.TF = TrakingF;
+            $scope.TM = TrakingM;
+            
+        };
+
+  };
+        
+});

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2009 11:56:06 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="Alejandria" name="beans.WebUserMessages" schema="dbo" table="WebUserMessages">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="action" type="string">
+      <column length="150" name="action"/>
+    </property>
+    <property name="message" type="string">
+      <column length="250" name="message"/>
+    </property>
+    <property name="initDate" type="timestamp">
+      <column length="23" name="initDate"/>
+    </property>
+    <property name="customerId" type="java.lang.Integer">
+      <column name="customerId"/>
+    </property>
+  </class>
+</hibernate-mapping>

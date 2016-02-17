@@ -1,0 +1,122 @@
+<div class="modal-body">
+<div class="container-fluid">
+    <font size="2">
+	<div class="row">
+		<div class="col-md-6">
+                    <label for="surname">INFORMACION DEL DOCUMENTO</label>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Fecha</label>
+                            </div>
+                            <div class="col-md-6">
+                               {{Fecha}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Origen</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Origen}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Destination</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Destination}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Cliente</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Cliente}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Descripcion</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Des}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Ruta</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Ruta}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Valor Merc</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Moneda}}{{ValorM}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Piezas</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Piezas}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Peso</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{Peso}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Peso Vol</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{PesoV}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">CFT</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{CFT}}
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <label for="surname">Merc. Peligrosa</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{MP}}
+                            </div>
+                    </div>
+		</div>
+		<div class="col-md-6">
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div id="grid1" ui-grid="gridOptions" class="gridStylePopD "  ng-click=selectRow() ui-grid-selection></div>
+                            </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div id="grid2" ui-grid="gridOptions2" class="gridStylePopD " ui-grid-selection></div>
+                            </div>
+                    </div>
+		</div>
+               
+	</div>
+    </font>
+</div>
+</div>
+

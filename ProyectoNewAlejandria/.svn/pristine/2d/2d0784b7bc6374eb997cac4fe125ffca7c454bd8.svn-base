@@ -1,0 +1,79 @@
+/* global mainApp, idWrhs, CryptoJS */
+
+mainApp.controller('PopUp', function($scope ,WebServicie ,$sessionStorage) {
+        
+        //Obtenemos los Valores de Varibales de Session
+        var username = "TECNOBODEGA4";
+        var password = "123456";
+        var passhash = CryptoJS.MD5(username+password);
+        $scope.TPiezas = 0;
+        $scope.TPeso = 0;
+        var myData;
+        
+        //Informacion de la Tabla
+        $scope.gridOptions = {
+            
+            //Definimos Headears
+            columnDefs : [
+                    {field: 'Pzs',  minWidth: 70, width: 55},
+                    {field: 'Pk',  minWidth: 70, width: 55},
+                    {field: 'Largo',  minWidth: 70, width: 55},
+                    {field: 'Ancho',  minWidth: 70, width: 58},
+                    {field: 'Alto',  minWidth: 70, width: 55},
+                    {field: 'Peso',  minWidth: 70, width: 55}
+                ],
+            
+                //DEfinimos data
+                data: myData
+        };  
+            
+        //Obtenemos el Detalle del WareHouse
+        WebServicie.GetDetalleWrhs(idWrhs,username,passhash+'').then(function(WR){
+            
+            var Wrhs = JSON.parse(WR);
+            $scope.WrhsId = Wrhs.warehouseDetail[0].warehouseId;           
+            $scope.Fecha = Wrhs.initDate;
+            $scope.NoPro = Wrhs.proNumber;
+            $scope.Rastreo = "";
+            $scope.Proveedor = Wrhs.shipper.name; 
+            $scope.Cliente = Wrhs.customer.name;
+            $scope.Transportista = Wrhs.inlandCarrier.name;
+            $scope.Estado = Wrhs.status.name;
+            $scope.Descripcion = Wrhs.description;
+            $scope.Moneda = Wrhs.currency;
+            $scope.ValorMerc = Wrhs.mercValue.toFixed(2);
+            $scope.VolTotal = Wrhs.warehouseDetail.volWeight;               
+            $scope.CFT = Wrhs.warehouseDetail.cft;
+            $scope.TextoMarcas = Wrhs.marks;
+            $scope.NoOrden = Wrhs.orderNo;
+            $scope.NoRef = Wrhs.refNo;
+            
+            //Check Factura Original
+            if(Wrhs.originalInvoice == true){$scope.FO = '\"1\"';}
+            else{$scope.FO = '\"0\"';}
+            
+            //Check Factura Original
+            if(Wrhs.packingList == true){$scope.LE = '\"1\"';}
+            else{$scope.LE = '\"0\"';}
+            
+            //LLenamos la Tabla con la Info del Wrhs
+            for(i = 0 ; i<Wrhs.warehouseDetail.length ; i++)
+            {
+             //Sumamos los Valores de la Tabla
+             $scope.TPiezas = $scope.TPiezas +Wrhs.warehouseDetail[i].pieces;
+             $scope.TPeso = $scope.TPeso +Wrhs.warehouseDetail[i].height;
+             
+             //LLenamos la Tabla con sus Valores
+             $scope.gridOptions.data.push({
+                'Pzs':Wrhs.warehouseDetail[i].pieces,
+                'Pk': Wrhs.warehouseDetail[i].packetTypeId,
+                'Largo':Wrhs.warehouseDetail[i].length,
+                'Ancho': Wrhs.warehouseDetail[i].width,
+                'Alto': Wrhs.warehouseDetail[i].weight,
+                'Peso':Wrhs.warehouseDetail[i].height
+              });          
+            }
+            
+        });
+                                
+});

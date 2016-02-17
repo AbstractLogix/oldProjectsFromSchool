@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 27, 2009 9:03:55 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.Iinvoices" schema="dbo" table="IInvoices">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="serie" type="string">
+      <column length="5" name="serie" not-null="true"/>
+    </property>
+    <property name="number" type="string">
+      <column length="30" name="number" not-null="true"/>
+    </property>
+    <property name="customerId" type="java.lang.Integer">
+      <column name="customerId"/>
+    </property>
+    <property name="printDate" type="timestamp">
+      <column length="23" name="printDate" not-null="true"/>
+    </property>
+    <property name="billingName" type="string">
+      <column length="100" name="billingName"/>
+    </property>
+    <property name="billingNo" type="string">
+      <column length="100" name="billingNo"/>
+    </property>
+    <property name="billingAddress" type="string">
+      <column length="100" name="billingAddress"/>
+    </property>
+    <property name="total" type="big_decimal">
+      <column name="total" precision="18"/>
+    </property>
+    <property name="exchangeRate" type="big_decimal">
+      <column name="exchangeRate" precision="18"/>
+    </property>
+    <property name="currency" type="string">
+      <column length="3" name="currency"/>
+    </property>
+    <property name="statusCode" type="string">
+      <column length="3" name="statusCode"/>
+    </property>
+    <property name="totalDollars" type="big_decimal">
+      <column name="totalDollars" precision="18"/>
+    </property>
+    <property name="creationDate" type="timestamp">
+      <column length="23" name="creationDate"/>
+    </property>
+    <property name="comment" type="string">
+      <column length="100" name="comment"/>
+    </property>
+    <property name="username" type="string">
+      <column length="30" name="username"/>
+    </property>
+    <property name="customerServiceId" type="java.lang.Integer">
+      <column name="customerServiceId"/>
+    </property>
+    <property name="voidTime" type="timestamp">
+      <column length="23" name="voidTime"/>
+    </property>
+    <property name="voidUsername" type="string">
+      <column length="30" name="voidUsername"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

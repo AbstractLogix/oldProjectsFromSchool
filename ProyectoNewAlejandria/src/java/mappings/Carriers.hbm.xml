@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 21, 2009 2:25:46 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.Carriers" schema="dbo" table="Carriers">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="carrierTypeId" type="int">
+      <column name="carrierTypeId" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="200" name="name"/>
+    </property>
+    <property name="phone" type="string">
+      <column length="15" name="phone"/>
+    </property>
+    <property name="fax" type="string">
+      <column length="15" name="fax"/>
+    </property>
+    <property name="email" type="string">
+      <column length="150" name="email"/>
+    </property>
+    <property name="accountNumber" type="string">
+      <column length="70" name="accountNumber"/>
+    </property>
+    <property name="firstName" type="string">
+      <column length="100" name="firstName"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="100" name="lastName"/>
+    </property>
+    <property name="stateId" type="int">
+      <column name="stateId" not-null="true"/>
+    </property>
+    <property name="address" type="string">
+      <column length="250" name="address"/>
+    </property>
+    <property name="locationId" type="java.lang.Integer">
+      <column name="locationId"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

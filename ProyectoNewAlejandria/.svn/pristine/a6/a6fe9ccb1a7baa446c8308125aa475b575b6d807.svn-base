@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 23, 2009 10:55:21 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.Documents" schema="dbo" table="Documents">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+    <property name="documentDate" type="timestamp">
+      <column length="23" name="documentDate"/>
+    </property>
+    <property name="origen" type="java.lang.Integer">
+      <column name="origen"/>
+    </property>
+    <property name="destination" type="java.lang.Integer">
+      <column name="destination"/>
+    </property>
+    <property name="agentOrigenId" type="java.lang.Integer">
+      <column name="agentOrigenId"/>
+    </property>
+    <property name="agentDestinationId" type="java.lang.Integer">
+      <column name="agentDestinationId"/>
+    </property>
+    <property name="customerId" type="java.lang.Integer">
+      <column name="customerId"/>
+    </property>
+    <property name="description" type="string">
+      <column length="300" name="description"/>
+    </property>
+    <property name="routingId" type="string">
+      <column length="10" name="routingId"/>
+    </property>
+    <property name="totalPieces" type="java.lang.Integer">
+      <column name="totalPieces"/>
+    </property>
+    <property name="totalWeight" type="big_decimal">
+      <column name="totalWeight" precision="18"/>
+    </property>
+    <property name="totalVolWeight" type="big_decimal">
+      <column name="totalVolWeight" precision="18"/>
+    </property>
+    <property name="totalCft" type="big_decimal">
+      <column name="totalCft" precision="18"/>
+    </property>
+    <property name="mercValue" type="big_decimal">
+      <column name="mercValue" precision="18"/>
+    </property>
+    <property name="dangerousGoods" type="java.lang.Boolean">
+      <column name="dangerousGoods"/>
+    </property>
+    <property name="documentNo" type="string">
+      <column length="50" name="documentNo"/>
+    </property>
+    <property name="documentType" type="string">
+      <column length="10" name="documentType"/>
+    </property>
+    <property name="refNo" type="string">
+      <column length="50" name="refNo"/>
+    </property>
+    <property name="poNumber" type="string">
+      <column length="50" name="poNumber"/>
+    </property>
+    <property name="comment" type="string">
+      <column length="300" name="comment"/>
+    </property>
+    <property name="shipperId" type="java.lang.Integer">
+      <column name="shipperId"/>
+    </property>
+    <property name="stepId" type="string">
+      <column length="2" name="stepId"/>
+    </property>
+    <property name="dua" type="string">
+      <column length="30" name="dua"/>
+    </property>
+    <property name="mercValueCurrencyId" type="java.lang.Integer">
+      <column name="mercValueCurrencyId"/>
+    </property>
+    <property name="currencyId" type="java.lang.Integer">
+      <column name="currencyId"/>
+    </property>
+    <property name="measure" type="string">
+      <column length="3" name="measure"/>
+    </property>
+    <property name="docWeight" type="big_decimal">
+      <column name="docWeight" precision="18"/>
+    </property>
+    <property name="docVolWeight" type="big_decimal">
+      <column name="docVolWeight" precision="18"/>
+    </property>
+    <property name="exchangeRate" type="big_decimal">
+      <column name="exchangeRate" precision="18"/>
+    </property>
+    <property name="docMercValue" type="big_decimal">
+      <column name="docMercValue" precision="18"/>
+    </property>
+    <property name="baseDocType" type="string">
+      <column length="25" name="baseDocType"/>
+    </property>
+    <property name="podDate" type="timestamp">
+      <column length="23" name="podDate"/>
+    </property>
+  </class>
+</hibernate-mapping>

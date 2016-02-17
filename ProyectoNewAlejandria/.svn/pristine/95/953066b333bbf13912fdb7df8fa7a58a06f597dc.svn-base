@@ -1,0 +1,102 @@
+var mainApp = angular.module("mainApp", [
+            'ngRoute',
+            'ui.grid', 
+            'ui.grid.resizeColumns',
+            'angularSoap',
+            'ngDialog',
+            'ngStorage'
+                            ]);
+
+
+       mainApp.factory('WebServicie', ['$soap',function($soap){
+        
+            //Area de Variables Globales
+            var WarehousesWS = "http://localhost:8080/ProyectoNewAlejandria/WarehousesWSService";
+            var CustomersWS = "http://localhost:8080/ProyectoNewAlejandria/CustomersWSService";
+            var DocumentsWS = "http://localhost:8080/ProyectoNewAlejandria/DocumentsWSService";
+            return {
+
+                //Metodo que Invoca WebServicie Prueba
+                GetWarehouse: function(username, authenticator){
+                return $soap.post(WarehousesWS,"getWarehousesOnOHRTLCFCCSByCustomer", {username: username, authenticator: authenticator});
+                },
+                
+                //Metodo que Regresa WebUSer
+                GetWebUser: function(username, authenticator){
+                return $soap.post(CustomersWS,"getCustomer", {username: username, authenticator: authenticator});
+                },
+                
+                //Metodo que regresa Wrhs*Id            
+                GetDetalleWrhs: function(warehouseId,username, authenticator){
+                return $soap.post(WarehousesWS,"getWarehouse", {warehouseId: warehouseId ,username: username, authenticator: authenticator});
+                },
+                
+                //Metodo que regresa Wrhs*Id            
+                GetDocuments: function(username, authenticator){
+                return $soap.post(DocumentsWS,"getDocumentsOnTransitByCustomer", {username: username, authenticator: authenticator});
+                }
+                
+            };
+      }]);
+
+
+      mainApp.config(['$routeProvider',
+         function($routeProvider) {
+            $routeProvider.
+               when('/MiCarga', {
+                  templateUrl: 'partials/Micarga.html',
+                  controller: 'MiCargaController'
+               }).
+               when('/MisEmbarques', {
+                  templateUrl: 'partials/MisEmbarques.html',
+                  controller: 'MiEmbarqueController'
+               }).
+               when('/MisFacturas', {
+                  templateUrl: 'partials/MisFacturas.html',
+                  controller: 'MiFacturas'
+               }).
+               otherwise({
+                  redirectTo: '/MisFacturas'
+               });
+         }]);
+         
+
+mainApp.controller('CargarDatos', function($scope,WebServicie ,$sessionStorage){
+            //Convertimos el Password
+            var username = "TECNOBODEGA4";
+            var password = "123456";
+            var passhash = CryptoJS.MD5(username+password);
+            
+                
+                //Encontramos el Nombre de la Empresa
+                WebServicie.GetWebUser(username,passhash+'').then(function(User){
+                    $scope.Nombre = User.name;
+                    $sessionStorage.cliente = User.name;
+                });
+            
+                //LLenamos el Json de los Wrhs
+                //Pasamos los datos por el WebServicie
+                WebServicie.GetWarehouse(username,passhash+'').then(function(WR){
+                    var Wrhs = JSON.parse(WR);
+                    $sessionStorage.Lwrhs = Wrhs;
+                });   
+                
+                //LLenamos el Json de los Cocumentos
+                //Pasamos los datos por el WebServicie
+                WebServicie.GetDocuments(username,passhash+'').then(function(Documentos){
+                    var Docu = JSON.parse(Documentos);
+                    $sessionStorage.Ldocumentos = Docu;
+                });   
+                
+            
+            
+});
+        
+         
+mainApp.controller('MiFacturas', function($scope) {
+            $scope.message = "Hola desde Controlador Mis Facturas";
+
+});
+         
+         
+       

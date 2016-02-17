@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 16, 2009 2:34:22 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.LocationServices" schema="dbo" table="LocationServices">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="routingId" type="string">
+      <column length="10" name="routingId" not-null="true"/>
+    </property>
+    <property name="locationId" type="int">
+      <column name="locationId" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="100" name="name"/>
+    </property>
+    <property name="minimumCharge" type="big_decimal">
+      <column name="minimumCharge" precision="18"/>
+    </property>
+    <property name="insurance" type="big_decimal">
+      <column name="insurance" precision="18"/>
+    </property>
+    <property name="insuranceCommission" type="big_decimal">
+      <column name="insuranceCommission" precision="18"/>
+    </property>
+    <property name="billOfLading" type="big_decimal">
+      <column name="billOfLading" precision="18"/>
+    </property>
+    <property name="awb" type="big_decimal">
+      <column name="awb" precision="18"/>
+    </property>
+    <property name="handling" type="big_decimal">
+      <column name="handling" precision="18"/>
+    </property>
+    <property name="localPickUp" type="big_decimal">
+      <column name="localPickUp" precision="18"/>
+    </property>
+    <property name="da" type="big_decimal">
+      <column name="DA" precision="18"/>
+    </property>
+    <property name="inland" type="big_decimal">
+      <column name="inland" precision="18"/>
+    </property>
+    <property name="securityCharge" type="big_decimal">
+      <column name="securityCharge" precision="18"/>
+    </property>
+    <property name="customsFee" type="big_decimal">
+      <column name="customsFee" precision="18"/>
+    </property>
+    <property name="fuelSurcharge" type="big_decimal">
+      <column name="fuelSurcharge" precision="18"/>
+    </property>
+    <property name="terminalFee" type="big_decimal">
+      <column name="terminalFee" precision="18"/>
+    </property>
+    <property name="freightFordwarder" type="big_decimal">
+      <column name="freightFordwarder" precision="18"/>
+    </property>
+    <property name="duty" type="big_decimal">
+      <column name="duty" precision="18"/>
+    </property>
+    <property name="prepaidCharge" type="big_decimal">
+      <column name="prepaidCharge" precision="9"/>
+    </property>
+    <property name="general" type="java.lang.Boolean">
+      <column name="general"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+    <property name="insuranceRate" type="big_decimal">
+      <column name="insuranceRate" precision="18"/>
+    </property>
+    <property name="policyCharge" type="big_decimal">
+      <column name="policyCharge" precision="18"/>
+    </property>
+  </class>
+</hibernate-mapping>

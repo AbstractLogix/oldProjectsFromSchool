@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2009 5:00:07 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.WarehouseDetails" schema="dbo" table="WarehouseDetails">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="warehouseId" type="java.lang.Integer">
+      <column name="warehouseId"/>
+    </property>
+    <property name="pieces" type="java.lang.Integer">
+      <column name="pieces"/>
+    </property>
+    <property name="packetTypeId" type="string">
+      <column length="2" name="packetTypeId"/>
+    </property>
+    <property name="length" type="big_decimal">
+      <column name="length" precision="18"/>
+    </property>
+    <property name="width" type="big_decimal">
+      <column name="width" precision="18"/>
+    </property>
+    <property name="height" type="big_decimal">
+      <column name="height" precision="18"/>
+    </property>
+    <property name="weight" type="big_decimal">
+      <column name="weight" precision="18"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+    <property name="measure" type="string">
+      <column length="10" name="measure"/>
+    </property>
+  </class>
+</hibernate-mapping>

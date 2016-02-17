@@ -1,0 +1,198 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8/07/2015, 11:20:49 AM
+    Author     : IT2
+*/
+/*style.css*/
+<<<<<<< .mine
+
+=======
+
+.AreaTrabajo{
+    padding: 2.5%;  
+    margin: 5% 5% 20% 5%;
+    border-color: black;
+    border-width: 1em;
+    background-color:#ffffff;
+    color: black;    
+}
+
+//Formato de Tabla Mensajes
+.tm{
+    
+}
+
+table{
+border-collapse: collapse;
+    width: 100%;
+    margin: auto; 
+}
+
+th, td {
+    border-collapse: collapse;
+    margin: auto; 
+}
+
+th, td{
+    padding: 1px;
+    margin: auto; 
+}
+//Fin Formato Tabla Mensajes
+
+
+textarea {
+   font-size: 10px; resize: none; 
+}
+
+>>>>>>> .r5
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    height: 120px;
+}
+
+.gridStyleD {
+    border: 1px solid rgb(212, 212, 212);
+    height: 250px;
+}
+
+.gridStylePopD {
+    border: 1px solid rgb(212, 212, 212);
+    height: 200px;
+}
+
+.gridStyleF {
+    border: 1px solid rgb(212,212,212);
+    height: 150px;
+}
+
+
+.ghost {
+
+    /* utilizamos estas propiedades para centrar el botón */
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    /* definimos los estilos del texto */
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    /* agregamos un borde y lo separamos del texto */
+    border: 0.15em solid #fff;
+    padding: 0.1em 0.1em;
+    
+    cursor:pointer;
+    
+    /* animamos el cambio de colores */
+    -webkit-transition: color 300ms, background 500ms, border-color 700ms;
+    transition: color 300ms, background 500ms, border-color 700ms;
+}
+
+<<<<<<< .mine
+.modal-fit .ngdialog.dialog {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 10px;
+=======
+.ghost:hover {
+    background: #FF783D;
+    border-color: #FF783D;
+    color:#FFF;
+>>>>>>> .r5
+}
+
+<<<<<<< .mine
+.modal-fit .ngdialog.body {
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+=======
+.ghostb {
+
+    /* utilizamos estas propiedades para centrar el botón */
+    display: inline-block;
+    position: relative;
+
+    /* agregamos un borde y lo separamos del texto */
+    border: 0.15em solid #fff;
+    padding: 0.1em 1.1em;
+    
+    cursor:pointer;
+    
+    /* animamos el cambio de colores */
+    -webkit-transition: color 300ms, background 500ms, border-color 700ms;
+    transition: color 300ms, background 500ms, border-color 700ms;
+>>>>>>> .r5
+}
+
+<<<<<<< .mine
+.btn {
+    font-family: Arial;
+    color: #0a0a0a;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+=======
+.ghostb:hover {
+    background: #FF783D;
+    border-color: #FF783D;
+    color:#FFF;
+>>>>>>> .r5
+}
+
+<<<<<<< .mine
+.btn:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}=======
+.Titulo
+{
+	text-shadow: 3px 1px 2px rgba(0, 0, 0, 0.85);
+	color: #ff783d;
+	font-size: 60px;
+}
+
+.Docu
+{
+    color: black;
+    font-size: 12px;
+    width: 100%;
+}
+
+#nav-p {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #ccc;
+    border-bottom: 1px solid #999;
+}
+#nav-p ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}>>>>>>> .r5

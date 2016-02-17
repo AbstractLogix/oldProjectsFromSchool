@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 27, 2009 4:33:43 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="beans.Users" schema="dbo" table="Users">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="username" type="string">
+      <column length="80" name="username" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="50" name="password"/>
+    </property>
+    <property name="name" type="string">
+      <column length="100" name="name" not-null="true"/>
+    </property>
+    <property name="lastname" type="string">
+      <column length="100" name="lastname" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="250" name="email"/>
+    </property>
+    <property name="email1" type="string">
+      <column length="250" name="email1"/>
+    </property>
+    <property name="tel" type="string">
+      <column length="20" name="tel"/>
+    </property>
+    <property name="cel" type="string">
+      <column length="20" name="cel"/>
+    </property>
+    <property name="address" type="string">
+      <column length="300" name="address"/>
+    </property>
+    <property name="locationId" type="int">
+      <column name="locationId" not-null="true"/>
+    </property>
+    <property name="customerAgent" type="java.lang.Boolean">
+      <column name="customerAgent"/>
+    </property>
+    <property name="salesRepresentative" type="java.lang.Boolean">
+      <column name="salesRepresentative"/>
+    </property>
+    <property name="rowguid" type="string">
+      <column length="36" name="rowguid" not-null="true" unique="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,690 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+<<<<<<< .mine
+/* global mainApp, CryptoJS,idWrhs */
+
+mainApp.controller('MiCargaController', function ($scope) {
+=======
+/* global CryptoJS, idWrhs */
+>>>>>>> .r5
+
+var appCarga = angular.module("Cargas", [
+            'ui.grid',
+            'ui.grid.edit',
+            'ngDialog',
+            'ngStorage',
+            'ngTouch',
+            'ui.grid.selection',
+            'ui.grid.autoResize',
+            'mainApp'
+]);
+     
+
+appCarga.controller('MiCargaController', function($scope) {
+
+<<<<<<< .mine
+mainApp.controller('TableCarga', function ($scope, ngDialog, $sessionStorage) {
+
+    $scope.Piezas = 0;
+    $scope.ValorMerc = 0;
+    $scope.Ctf = 0;
+    $scope.Peso = 0;
+    $scope.PesoV = 0;
+
+    $scope.Open = function (id) {
+        idWrhs = id;
+        ngDialog.open({
+            templateUrl: 'partials/PopUpWrhs.html',
+            controller: "PopUp"
+        });
+
+    };
+
+    var myData = [
+        {
+=======
+});
+    
+appCarga.controller('TableCarga', function($scope, WebServicie ,ngDialog ,$sessionStorage , uiGridConstants,$window) {
+        
+        $scope.Piezas = 0;
+        $scope.ValorMerc = 0;
+        $scope.Ctf = 0;
+        $scope.Peso = 0;
+        $scope.PesoV = 0;
+        
+        $scope.PZ = 0;
+        $scope.PS = 0;
+        $scope.Ctf2 = 0;
+        $scope.PV = 0;
+        
+            var username = $sessionStorage.user;
+            var password = $sessionStorage.pass;
+            var passhash = CryptoJS.MD5(username+password);
+            
+        //Encargado de Exportar Tabla
+        $scope.Exportar = function(){
+          
+            var NW = "";
+            if($scope.gridOptions.data.length == 0){
+                sweetAlert("", "No hay Datos Para Exportar", "error");
+            }
+            else{
+                //Llenamos el String
+                for(var i = 0; i<$scope.gridOptions.data.length ; i++){  
+                    NW += $scope.gridOptions.data[i].WrhId+ ',';
+                }
+                //Llamamos al Web Servicie
+                swal({   title: "Generando",   text: "Espere un Momento",   timer: 120000,   showConfirmButton: false });
+                WebServicie.GetReportW(NW,username,passhash+'').then(function(User){
+                    //$window.open('/ProyectoNewAlejandria/reports/excel/'+User+'_warehousesReport.xls', "_self");    
+                    var a = '<a class="ghostb" href="/ProyectoNewAlejandria/reports/excel/'+User+'_warehousesReport.xls"  target="_self">Descargar</a>';
+                    sweetAlert({title: '' ,text:a , confirmButtonText: "Cerrar" ,html:true });  
+                });
+            }
+            
+            
+        };
+        
+        //Encaradi de Abrir Pdf de la Factura
+        $scope.WrhsDocu = function(){
+        //Tomamos el Valor de la Fila Seleccionada
+            var p = $scope.gridApi.selection.getSelectedRows();
+            if( p.length == 1){
+                //Si encontro una Factura
+                 $window.open('http://miami.cpslogistics.com:8080/IcarusDocs/reports/scanned/0'+p[0].WrhId+'.pdf');            
+            }else{
+                //Si no hay Fila Seleccionada Mostramos Mensaje
+                sweetAlert("", "Selecione un Warehouse", "error");
+            }
+        
+        };
+        
+        $scope.Open = function (id) {            
+            idWrhs = id;
+            ngDialog.open({
+                templateUrl: 'partials/PopUpWrhs.html',
+                controller: "PopUp"
+            });
+        
+        };
+        
+        var AC = [];
+        
+        $scope.Selecmas = function (row) {
+            
+            var c = 0;
+            var con = 0;
+            var i = 0;
+            
+            if(row.Step === "OH"){
+                        //Revisamos si la row existe
+                        for(i = 0; i< AC.length ;i++){
+                                if(AC[i].WrhId === row.WrhId){
+                                    c = 1;
+                                    con = i;
+                                }
+                        }
+                        
+                        if(c == 0){
+                            AC.push(row);
+                        }
+                        
+                        if(AC.length >0){
+                            var Dc = [];
+                            $scope.PZ = 0;
+                            $scope.PS = 0;
+                            $scope.Ctf2 = 0;
+                            $scope.PV = 0;
+                            //LLenamos la Tabla 2
+                    
+                            for(var i = 0; i< AC.length ; i++)
+                            {
+                                $scope.PZ = $scope.PZ + parseInt(AC[i].Pzs);
+                                $scope.PS = $scope.PS + parseInt(AC[i].Peso);
+                                $scope.Ctf2 = $scope.Ctf2 + parseInt(AC[i].Ctf);
+                                $scope.PV = $scope.PV + parseInt(AC[i].PesoVol);
+                    
+                                Dc.push({
+                                    'WrhId': AC[i].WrhId,
+                                    'Orig': AC[i].Orig,
+                                    'Dest': AC[i].Dest,
+                                    'Pzs': AC[i].Pzs,
+                                    'Peso': AC[i].Peso,
+                                    'Ctf': AC[i].Ctf,
+                                    'PesoVol': AC[i].PesoVol
+                                });               
+                            }
+                            $scope.TablaC.data = Dc;
+                
+                            $scope.COCV = 0;
+                            $scope.AIRV = 0;
+                            $scope.LCLV = 0;
+                            $scope.FCLV = 0;
+            
+                            $scope.Cotizar();
+                    
+                        }else{
+                            var Dc = [];
+                            $scope.TablaC.data = DC;
+                            $scope.PZ = 0;
+                            $scope.PS = 0;
+                            $scope.Ctf2 = 0;
+                            $scope.PV = 0;
+                            $scope.COCV = 0;
+                            $scope.AIRV = 0;
+                            $scope.LCLV = 0;
+                            $scope.FCLV = 0;
+                        }
+           }else{
+               sweetAlert("", "Solo puede agregar Warehouses On Hand", "error"); 
+           }              
+        };
+        
+        $scope.Selecmenos = function (row) {
+            
+            var c = 0;
+            var cont = 0;
+            var i = 0;
+            
+            //Revisamos si la row existe
+            for(i = 0; i< AC.length ;i++){
+                if(AC[i].WrhId == row.WrhId){
+                     c = 1;
+                     cont = i;
+                     }
+            }     
+            
+            if(c === 1){
+                AC.splice(cont,1);
+            }
+            
+             if(AC.length >0){
+                            var Dc = [];
+                            $scope.PZ = 0;
+                            $scope.PS = 0;
+                            $scope.Ctf2 = 0;
+                            $scope.PV = 0;
+                            //LLenamos la Tabla 2
+                    
+                            for(var i = 0; i< AC.length ; i++)
+                            {
+                                $scope.PZ = $scope.PZ + parseInt(AC[i].Pzs);
+                                $scope.PS = $scope.PS + parseInt(AC[i].Peso);
+                                $scope.Ctf2 = $scope.Ctf2 + parseInt(AC[i].Ctf);
+                                $scope.PV = $scope.PV + parseInt(AC[i].PesoVol);
+                    
+                                Dc.push({
+                                    'WrhId': AC[i].WrhId,
+                                    'Orig': AC[i].Orig,
+                                    'Dest': AC[i].Dest,
+                                    'Pzs': AC[i].Pzs,
+                                    'Peso': AC[i].Peso,
+                                    'Ctf': AC[i].Ctf,
+                                    'PesoVol': AC[i].PesoVol
+                                });               
+                            }
+                            $scope.TablaC.data = Dc;
+                
+                            $scope.COCV = 0;
+                            $scope.AIRV = 0;
+                            $scope.LCLV = 0;
+                            $scope.FCLV = 0;
+            
+                            $scope.Cotizar();
+                    
+                        }else{
+                            var Dc = [];
+                            $scope.TablaC.data = DC;
+                            $scope.PZ = 0;
+                            $scope.PS = 0;
+                            $scope.Ctf2 = 0;
+                            $scope.PV = 0;
+                            $scope.COCV = 0;
+                            $scope.AIRV = 0;
+                            $scope.LCLV = 0;
+                            $scope.FCLV = 0;
+                        }
+                        
+        };
+>>>>>>> .r5
+
+<<<<<<< .mine
+
+
+    $scope.gridOptions = {
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
+
+        //Definimos Headears
+        columnDefs: [
+            {
+                field: 'WrhId',
+                minWidth: 70,
+                width: 70,
+                displayName: 'Wrh Id',
+                cellTemplate: '<button type="button" style="width:100%;height:100%" ng-click=grid.appScope.Open(row.entity.WrhId) class="btn btn-default">' +
+                    '{{row.entity.WrhId}}' +
+                    '</button>'
+=======
+        
+        
+        //Info Tabla Carga
+        var myData = [];
+        $scope.gridOptions = {
+            enableRowSelection: true,
+            enableRowHeaderSelection: false,
+            //Definimos Headears
+            columnDefs : [
+                {field:'C' , minWidth: 40,
+                    displayName:'-->',
+                    cellTemplate:'<input type=image src="images/plus.jpg" style="width:100%;height:100%" ng-click=grid.appScope.Selecmas(row.entity)>'
+                },
+                {field:'WrhId', minWidth: 80,
+                 displayName: 'Wrh Id',
+                 cellTemplate:'<a class="ghost" style="width:100%;height:100%" ng-click=grid.appScope.Open(row.entity.WrhId)>'+
+                                '{{row.entity.WrhId}}'+
+                                '</a>'
+>>>>>>> .r5
+                },
+<<<<<<< .mine
+            {
+                field: 'Step',
+                minWidth: 70,
+                width: 50
+            },
+            {
+                field: 'Orig',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Dest',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Routing',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Valor Merc',
+                minWidth: 70,
+                width: 80
+            },
+            {
+                field: 'Pzs',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Peso',
+                minWidth: 70,
+                width: 50
+            },
+            {
+                field: 'Volumetrico',
+                minWidth: 70,
+                width: 90
+            },
+            {
+                field: 'Proveedor',
+                minWidth: 70,
+                width: 100
+            },
+            {
+                field: 'Orden',
+                minWidth: 70,
+                width: 120,
+                displayName: 'No.Orden'
+                }
+=======
+                {field:'Step',  minWidth: 50},
+                {field:'Orig',  minWidth: 60}, 
+                {field: 'Dest',  minWidth: 60},
+                {field: 'Routing',  minWidth: 60},
+                {field: 'Valor Merc',  minWidth: 80},
+                {field: 'Pzs',  minWidth: 40},
+                {field: 'Peso',  minWidth: 50},
+                {field: 'Volumetrico',  minWidth: 90},
+                {field: 'Proveedor',  minWidth: 110},
+                {field: 'Orden',  minWidth: 120 ,displayName: 'No.Orden'},
+                {field: 'Ctf' , visible: false},
+                {field: 'PesoVol' , visible: false}
+                
+>>>>>>> .r5
+            ],
+<<<<<<< .mine
+
+        //DEfinimos data
+        data: myData
+    };
+    $scope.gridOptions.multiSelect = false;
+
+    //Pasamos los datos por el WebServicie
+    $scope.gridOptions.data.splice(0, 1);
+    for (i = 0; i < $sessionStorage.Lwrhs.length; i++) {
+        //Sumamos los Valores de la Tabla
+        $scope.Piezas = $scope.Piezas + parseInt($sessionStorage.Lwrhs[i].pieces);
+        $scope.ValorMerc = $scope.ValorMerc + parseInt($sessionStorage.Lwrhs[i].mercValue);
+        $scope.Ctf = $scope.Ctf + parseInt($sessionStorage.Lwrhs[i].cft);
+        $scope.Peso = $scope.Peso + parseInt($sessionStorage.Lwrhs[i].weight);
+        $scope.PesoV = $scope.PesoV + parseInt($sessionStorage.Lwrhs[i].volWeight);
+
+        //LLenamos la Tabla con sus Valores
+        $scope.gridOptions.data.push({
+            'WrhId': $sessionStorage.Lwrhs[i].id,
+            'Step': $sessionStorage.Lwrhs[i].stepId,
+            'Orig': $sessionStorage.Lwrhs[i].origenCity,
+            'Dest': $sessionStorage.Lwrhs[i].destinationId,
+            'Routing': $sessionStorage.Lwrhs[i].routingId,
+            'Valor Merc': $sessionStorage.Lwrhs[i].mercValue,
+            'Pzs': $sessionStorage.Lwrhs[i].pieces,
+            'Peso': $sessionStorage.Lwrhs[i].weight,
+            'Volumetrico': $sessionStorage.Lwrhs[i].volWeight,
+            'Orden': $sessionStorage.Lwrhs[i].orderNo,
+            'Proveedor': $sessionStorage.Lwrhs[i].shipper.name
+        });
+    }
+
+
+=======
+            
+            //DEfinimos data
+            data: myData
+        };  
+        $scope.gridOptions.multiSelect = false;
+        
+        //Info Tabla Cotizar
+        var DC = [];
+        $scope.TablaC = {          
+            //Definimos Headears
+            columnDefs : [
+                {field:'C' , minWidth: 40,
+                    displayName:'<--',
+                    cellTemplate:'<input type=image src="images/minus.png" style="width:50%;height:50%" ng-click=grid.appScope.Selecmenos(row.entity)>'
+                },
+                {field:'WrhId', displayName:'WrhId', minWidth: 70},
+                {field:'Orig',  minWidth: 40}, 
+                {field: 'Dest',  minWidth: 40},
+                {field: 'Pzs',  minWidth: 40},
+                {field: 'Peso',  minWidth: 55},
+                {field: 'Ctf' , visible: false},
+                {field: 'PesoVol' , visible: false}
+            ],
+            
+            //DEfinimos data
+            data: DC
+        }; 
+        
+        
+        //Funcion Para el Filtro
+        $scope.Filtro = function() {
+
+            var filtro = "";
+            if($scope.searchText === "On Hand"){filtro = "OH";}
+            if($scope.searchText === "Routing"){filtro = "RT";}
+            if($scope.searchText === "LCL"){filtro = "LC";}
+            if($scope.searchText === "FCL"){filtro = "FC";}
+            if($scope.searchText === "Consolidado"){filtro = "CS";}
+            if($scope.searchText === "Carga Maritima"){filtro = "TR";}
+            
+            //Iniciamos a 0 Totales
+             $scope.Piezas = 0;
+             $scope.ValorMerc = 0;
+             $scope.Ctf = 0;
+             $scope.Peso = 0;
+             $scope.PesoV = 0;
+                
+            $scope.gridOptions.data = [];
+            
+                for(i = 0 ; i<$sessionStorage.Lwrhs.length  ; i++)
+                {
+                                         
+                    if( $sessionStorage.Lwrhs[i].stepId == filtro || filtro == "")
+                    {
+                        //Sumamos los Valores de la Tabla
+             $scope.Piezas = $scope.Piezas + parseInt($sessionStorage.Lwrhs[i].pieces);
+             $scope.ValorMerc = $scope.ValorMerc + parseInt($sessionStorage.Lwrhs[i].mercValue);
+             $scope.Ctf = $scope.Ctf + parseInt($sessionStorage.Lwrhs[i].cft);
+             $scope.Peso = $scope.Peso + parseInt($sessionStorage.Lwrhs[i].weight);
+             $scope.PesoV = $scope.PesoV + parseInt($sessionStorage.Lwrhs[i].volWeight);
+             
+             //LLenamos la Tabla con sus Valores
+             $scope.gridOptions.data.push({
+                'C':'',
+                'WrhId':$sessionStorage.Lwrhs[i].id,
+                'Step': $sessionStorage.Lwrhs[i].stepId,
+                'Orig': $sessionStorage.Lwrhs[i].origenCity,
+                'Dest': $sessionStorage.Lwrhs[i].destinationId,
+                'Routing': $sessionStorage.Lwrhs[i].routingId,
+                'Valor Merc': $sessionStorage.Lwrhs[i].mercValue,
+                'Pzs': $sessionStorage.Lwrhs[i].pieces,
+                'Peso': $sessionStorage.Lwrhs[i].weight,
+                'Volumetrico': $sessionStorage.Lwrhs[i].volWeight,
+                'Orden': $sessionStorage.Lwrhs[i].orderNo,
+                'Proveedor': $sessionStorage.Lwrhs[i].shipper.name
+              });          
+                    }
+                }
+                      
+        };
+        
+>>>>>>> .r5
+<<<<<<< .mine
+});
+
+mainApp.controller('TableCargaCotizar', function ($scope) {
+
+
+    var myData = [
+        {
+
+        }];
+=======
+        
+        //Pasamos los datos por el WebServicie
+                    for( var i = 0 ; i<$sessionStorage.Lwrhs.length ; i++)
+                {
+                            //Sumamos los Valores de la Tabla                           
+                            $scope.Piezas = $scope.Piezas + parseInt($sessionStorage.Lwrhs[i].pieces);
+                            $scope.ValorMerc = $scope.ValorMerc + parseInt($sessionStorage.Lwrhs[i].mercValue);
+                            $scope.Ctf = $scope.Ctf + parseInt($sessionStorage.Lwrhs[i].cft);
+                            $scope.Peso = $scope.Peso + parseInt($sessionStorage.Lwrhs[i].weight);
+                            $scope.PesoV = $scope.PesoV + parseInt($sessionStorage.Lwrhs[i].volWeight);
+             
+                            //LLenamos la Tabla con sus Valores
+                            $scope.gridOptions.data.push({
+                                'WrhId':$sessionStorage.Lwrhs[i].id,
+                                'Step': $sessionStorage.Lwrhs[i].stepId,
+                                'Orig': $sessionStorage.Lwrhs[i].origenCity,
+                                'Dest': $sessionStorage.Lwrhs[i].destinationId,
+                                'Routing': $sessionStorage.Lwrhs[i].routingId,
+                                'Valor Merc': $sessionStorage.Lwrhs[i].mercValue,
+                                'Pzs': $sessionStorage.Lwrhs[i].pieces,
+                                'Peso': $sessionStorage.Lwrhs[i].weight,
+                                'Volumetrico': $sessionStorage.Lwrhs[i].volWeight,
+                                'Orden': $sessionStorage.Lwrhs[i].orderNo,
+                                'Proveedor': $sessionStorage.Lwrhs[i].shipper.name,
+                                'Ctf': $sessionStorage.Lwrhs[i].cft,
+                                'PesoVol': $sessionStorage.Lwrhs[i].volWeight
+                            });          
+                }
+            
+        $scope.gridOptions.onRegisterApi = function( gridApi ) {
+            $scope.gridApi = gridApi;
+            
+            $scope.toggleRowSelection = function() {
+                $scope.gridApi.selection.clearSelectedRows();
+                $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
+                $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.OPTIONS);
+            };
+>>>>>>> .r5
+<<<<<<< .mine
+
+    $scope.gridOptions = {
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
+
+        //Definimos Headears
+        columnDefs: [
+            {
+                field: 'Wrh Id',
+                minWidth: 70,
+                width: 70
+            }, ,
+            {
+                field: 'Orig',
+                minWidth: 70,
+                width: 60
+            },
+            {
+                field: 'Dest',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Pzs',
+                minWidth: 70,
+                width: 40
+            },
+            {
+                field: 'Peso',
+                minWidth: 70,
+                width: 63
+            }
+            ],
+=======
+        
+            
+            //Metodo Cuando se Selecciona una Fila
+            $scope.selectRow = function(){
+
+            };
+>>>>>>> .r5
+<<<<<<< .mine
+
+        //DEfinimos data
+        data: myData
+    };
+    $scope.gridOptions.multiSelect = false;
+
+
+});=======
+            
+
+
+  };
+
+  
+        $scope.Cotizar = function(){
+            
+            var chargeableWeight = parseInt($scope.PS);
+            if(parseInt($scope.PV) > parseInt($scope.PS)){
+                chargeableWeight = parseInt($scope.PV);
+            }
+            
+            
+            for(var i = 0; i < $sessionStorage.cliente.customerDestinations.length ; i++){
+                for(var ii = 0; ii < $sessionStorage.cliente.customerDestinations[i].customerServices.length ; ii++){
+                     if($sessionStorage.cliente.customerDestinations[i].customerServices[ii].locationService.routingId == 'AIR'){
+                        	
+                                $scope.AIRV = 1;
+				//airSrvRB.label = "Regular Air";
+				//airSrvRB.visible = true;
+				// Creo la tarifa a cobrar
+				var rate = $sessionStorage.cliente.customerDestinations[i].customerServices[ii].customerChargesByLbs.flatFee;
+				rate += $sessionStorage.cliente.customerDestinations[i].customerServices[ii].fuelSurcharge;
+				rate += $sessionStorage.cliente.customerDestinations[i].customerServices[ii].securityCharge;
+				if($sessionStorage.cliente.customerDestinations[i].customerServices[ii].allInclude == true){
+					rate += $sessionStorage.cliente.customerDestinations[i].customerServices[ii].policyCharge;
+				}
+				// Obtengo el valor de facturacion
+				var ammount = rate * chargeableWeight;
+				if (ammount < $sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge) {
+					$scope.airAmmountL = "$ "+$sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge;
+				} else {
+					$scope.airAmmountL = "$ "+ammount.toFixed(2);
+				}
+                                var F = new Date();
+                                F = $sessionStorage.airETAL;
+				$scope.airETAL = F.getDate()+ "/" + (F.getMonth()+1) + "/" +  F.getFullYear() ;
+                    }else if ($sessionStorage.cliente.customerDestinations[i].customerServices[ii].locationService.routingId == 'COC') {
+				
+                                 $scope.COCV = 1;
+                                //cocSrvRB.label = parentDocument.customer.customerDestinations[i].customerServices[ii].locationService.name;
+				//cocSrvRB.label = "Courier";
+				//cocSrvRB.visible = true;
+				// Creo la tarifa a cobrar
+				rate = $sessionStorage.cliente.customerDestinations[i].customerServices[ii].customerChargesByLbs.flatFee;
+				// Obtengo el valor de facturacion
+				ammount = rate * parseInt($scope.PS);
+				if (ammount < $sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge) {
+					$scope.cocAmmountL = "$ "+$sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge;
+				} else {
+					$scope.cocAmmountL = "$ "+ ammount.toFixed(2);
+				}
+                                
+                                var F = new Date();
+                                F = $sessionStorage.cocETAL;
+				$scope.cocETAL = F.getDate()+ "/" + (F.getMonth()+1) + "/" +  F.getFullYear() ;
+				
+                    } else if ($sessionStorage.cliente.customerDestinations[i].customerServices[ii].locationService.routingId == 'LCL') {
+                        
+                                $scope.LCLV = 1;
+                                //lclSrvRB.label = parentDocument.customer.customerDestinations[i].customerServices[ii].locationService.name;
+				//lclSrvRB.label = "LCL";
+				//lclSrvRB.visible = true;
+				// Creo la tarifa a cobrar
+				var weightRate = $sessionStorage.cliente.customerDestinations[i].customerServices[ii].customerChargesByLbs.flatFee;
+				var cftRate = $sessionStorage.cliente.customerDestinations[i].customerServices[ii].customerChargesByCft.flatFee;
+				rate = 0;
+                                var quoteTotalWeight = parseInt($scope.PS);
+                                var quoteTotalCft = parseInt($scope.Ctf2);
+                                
+				if ((weightRate*quoteTotalWeight) > (cftRate*quoteTotalCft)) {
+					rate = weightRate;
+					rate += $sessionStorage.cliente.customerDestinations[i].customerServices[ii].insurance; // Bunker
+					// Obtengo el valor de facturacion
+					ammount = rate * quoteTotalWeight;
+					//Alert.show(rate+" air "+quoteTotalWeight+" bc "+ammount);
+					$scope.lclAmmountL = "$ "+ammount.toFixed(2);
+				} else {
+					rate = cftRate;
+					rate += $sessionStorage.cliente.customerDestinations[i].customerServices[ii].insuranceCommission; // Bunker
+					ammount = rate * quoteTotalCft;
+					//Alert.show(rate+" cft "+quoteTotalCft+" bc "+ammount);
+					$scope.lclAmmountL = "$ "+ammount.toFixed(2);
+				}
+				if (ammount < $sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge) {
+					$scope.lclAmmountL = "$ "+$sessionStorage.cliente.customerDestinations[i].customerServices[ii].minimumCharge;
+				}
+                                
+                                var F = new Date();
+                                $scope.lclETAL = $sessionStorage.cocETAL;
+				$scope.lclETAL = F.getDate()+ "/" + (F.getMonth()+1) + "/" +  F.getFullYear() ;
+                                
+                    }else if ( $sessionStorage.cliente.customerDestinations[i].customerServices[ii].locationService.routingId == 'FCL') {
+                                if (parseInt($scope.PS) > 1800 || parseInt($scope.Ctf2) > 1200) {
+					//fclSrvRB.label = parentDocument.customer.customerDestinations[i].customerServices[ii].locationService.name;
+					//fclSrvRB.label = "FCL";
+					//fclSrvRB.visible = true;
+					//fclAmmountL.text = m.get('31')+"";
+                                        $scope.FCLV = 1;
+                                        $scope.FCLM = "Recomendamos traer un contenedor completo"
+                                }
+                    }
+                }
+            }
+            
+            
+        };
+           
+        
+});
+>>>>>>> .r5
