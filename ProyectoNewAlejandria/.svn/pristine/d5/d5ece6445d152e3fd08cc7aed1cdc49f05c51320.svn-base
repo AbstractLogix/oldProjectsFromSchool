@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/ProyectoNewAlejandria/WarehousesWSService?wsdl" uri="src/conf/xml-resources/web-service-references/WarehousesWSService/wsdl/localhost_8080/ProyectoNewAlejandria/WarehousesWSService.wsdl"/>
-    <system systemId="http://localhost:8080/ProyectoNewAlejandria/WarehousesWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/WarehousesWSService/wsdl/localhost_8080/ProyectoNewAlejandria/WarehousesWSService.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/ProyectoNewAlejandria/CustomersWSService?wsdl" uri="src/conf/xml-resources/web-service-references/CustomersWSService/wsdl/localhost_8080/ProyectoNewAlejandria/CustomersWSService.wsdl"/>
-    <system systemId="http://localhost:8080/ProyectoNewAlejandria/CustomersWSService?xsd=1" uri="src/conf/xml-resources/web-service-references/CustomersWSService/wsdl/localhost_8080/ProyectoNewAlejandria/CustomersWSService.xsd_1.xsd"/>
-</catalog>
